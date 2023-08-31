@@ -3,5 +3,50 @@
     "category": "vegetables",
     "level": "subordinate",
     "word": "fep",
-    "prompt_to_run": "You will be given a task consisting of two parts:\n1. A word-learning phase where you will be shown examples of a new word and give a similarity score of the word.\n2. A similarity judgement phase where you will be asked to rate the similarity of pairs of objects for a total of 50 objects.\n\n\nMr. Frog speaks a different language, and you are helping him to pick out the object he wants. You'll be given a novel word and some examples of the word.\n\nHere is a fep:\n1. green bell pepper\n\nNow pick out the other feps from the following list:\n1. crane\n2. red bell pepper\n3. seal\n4. onion\n5. Labrador\n6. chiller truck\n7. yellow bell pepper\n8. pumpkin\n9. box truck\n10. cat\n11. car\n12. basset hound\n13. bear\n14. Dalmatian\n15. green bell pepper\n16. eggplant\n17. bee\n18. full-trailer truck\n19. carrot\n20. loader\n21. school bus\n\n\nNext, for each pair of the objects below, rate the similarity of the two objects on a scale of 1 (not similar at all) to 9 (extremely similar). Try your best to base your ratings on the same aspects of the objects that were important to you in making your choices during the word-learning phase:\n\n1. seal and terrier\n2. tractor and box truck\n3. loader and bee\n4. onion and Labrador\n5. Dalmatian and school bus\n6. crane and garbage truck\n7. seal and school bus\n8. red bell pepper and mutt\n9. basset hound and motorcycle\n10. toucan and seal\n11. pumpkin and box truck\n12. terrier and full-trailer truck\n13. red bell pepper and car\n14. terrier and carrot\n15. eggplant and yellow bell pepper\n16. bee and toucan\n17. green bell pepper and red bell pepper\n18. Dalmatian and Labrador\n19. eggplant and mutt\n20. onion and carrot\n21. motorcycle and mutt\n22. carrot and red bell pepper\n23. onion and mutt\n24. tractor and car\n25. pumpkin and carrot\n26. mutt and yellow bell pepper\n27. mutt and full-trailer truck\n28. tractor and yellow bell pepper\n29. box truck and car\n30. tractor and red bell pepper\n31. bear and yellow bell pepper\n32. pumpkin and bee\n33. pig and red bell pepper\n34. tractor and semi-trailer truck\n35. toucan and carrot\n\n\nThe output should be formatted as a JSON instance that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\": {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output schema:\n```\n{\"properties\": {\"objects_chosen\": {\"description\": \"objects that the word applied to\", \"items\": {\"type\": \"string\"}, \"title\": \"Objects Chosen\", \"type\": \"array\"}, \"choice_explanation\": {\"description\": \"explanation of objects chosen\", \"title\": \"Choice Explanation\", \"type\": \"string\"}, \"similarity_score\": {\"additionalProperties\": {\"type\": \"integer\"}, \"description\": \"similarity score for each pair of objects\", \"title\": \"Similarity Score\", \"type\": \"object\"}}, \"required\": [\"objects_chosen\", \"choice_explanation\", \"similarity_score\"]}\n```\n\nPlease be sure to give similarity scores to ALL 50 pairs of objects listed above.\n\n"
+    "prompt_to_run": "You will be given a task consisting of two parts:\n1. A word-learning phase where you will be shown examples of a new word and give a similarity score of the word.\n2. A similarity judgement phase where you will be asked to rate the similarity of pairs of objects for a total of 50 objects.\n\n\nMr. Frog speaks a different language, and you are helping him to pick out the object he wants. You'll be given a novel word and some examples of the word.\n\nHere is a fep:\n1. green bell pepper\n\nNow pick out the other feps from the following list:\n1. crane\n2. red bell pepper\n3. seal\n4. onion\n5. Labrador\n6. chiller truck\n7. yellow bell pepper\n8. pumpkin\n9. box truck\n10. cat\n11. car\n12. basset hound\n13. bear\n14. Dalmatian\n15. green bell pepper\n16. eggplant\n17. bee\n18. full-trailer truck\n19. carrot\n20. loader\n21. school bus\n\n\nNext, for each pair of the objects below, rate the similarity of the two objects on a scale of 1 (not similar at all) to 9 (extremely similar). Try your best to base your ratings on the same aspects of the objects that were important to you in making your choices during the word-learning phase:\n\n1. seal and terrier\n2. tractor and box truck\n3. loader and bee\n4. onion and Labrador\n5. Dalmatian and school bus\n6. crane and garbage truck\n7. seal and school bus\n8. red bell pepper and mutt\n9. basset hound and motorcycle\n10. toucan and seal\n11. pumpkin and box truck\n12. terrier and full-trailer truck\n13. red bell pepper and car\n14. terrier and carrot\n15. eggplant and yellow bell pepper\n16. bee and toucan\n17. green bell pepper and red bell pepper\n18. Dalmatian and Labrador\n19. eggplant and mutt\n20. onion and carrot\n21. motorcycle and mutt\n22. carrot and red bell pepper\n23. onion and mutt\n24. tractor and car\n25. pumpkin and carrot\n26. mutt and yellow bell pepper\n27. mutt and full-trailer truck\n28. tractor and yellow bell pepper\n29. box truck and car\n30. tractor and red bell pepper\n31. bear and yellow bell pepper\n32. pumpkin and bee\n33. pig and red bell pepper\n34. tractor and semi-trailer truck\n35. toucan and carrot\n\n\nThe output should be formatted as a JSON instance that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\": {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output schema:\n```\n{\"properties\": {\"objects_chosen\": {\"description\": \"objects that the word applied to\", \"items\": {\"type\": \"string\"}, \"title\": \"Objects Chosen\", \"type\": \"array\"}, \"choice_explanation\": {\"description\": \"explanation of objects chosen\", \"title\": \"Choice Explanation\", \"type\": \"string\"}, \"similarity_score\": {\"additionalProperties\": {\"type\": \"integer\"}, \"description\": \"similarity score for each pair of objects\", \"title\": \"Similarity Score\", \"type\": \"object\"}}, \"required\": [\"objects_chosen\", \"choice_explanation\", \"similarity_score\"]}\n```\n\nPlease be sure to give similarity scores to ALL 50 pairs of objects listed above.\n\n",
+    "results": {
+        "objects_chosen": [
+            "green bell pepper",
+            "red bell pepper",
+            "yellow bell pepper"
+        ],
+        "choice_explanation": "Based on the example given for the word 'fep', it seems to represent bell peppers of different colors.",
+        "similarity_score": {
+            "seal and terrier": 2,
+            "tractor and box truck": 8,
+            "loader and bee": 1,
+            "onion and Labrador": 1,
+            "Dalmatian and school bus": 1,
+            "crane and garbage truck": 2,
+            "seal and school bus": 1,
+            "red bell pepper and mutt": 1,
+            "basset hound and motorcycle": 1,
+            "toucan and seal": 1,
+            "pumpkin and box truck": 1,
+            "terrier and full-trailer truck": 1,
+            "red bell pepper and car": 1,
+            "terrier and carrot": 1,
+            "eggplant and yellow bell pepper": 6,
+            "bee and toucan": 2,
+            "green bell pepper and red bell pepper": 9,
+            "Dalmatian and Labrador": 8,
+            "eggplant and mutt": 1,
+            "onion and carrot": 6,
+            "motorcycle and mutt": 2,
+            "carrot and red bell pepper": 5,
+            "onion and mutt": 1,
+            "tractor and car": 5,
+            "pumpkin and carrot": 6,
+            "mutt and yellow bell pepper": 1,
+            "mutt and full-trailer truck": 1,
+            "tractor and yellow bell pepper": 1,
+            "box truck and car": 6,
+            "tractor and red bell pepper": 1,
+            "bear and yellow bell pepper": 1,
+            "pumpkin and bee": 2,
+            "pig and red bell pepper": 1,
+            "tractor and semi-trailer truck": 7,
+            "toucan and carrot": 1
+        }
+    }      
 }
